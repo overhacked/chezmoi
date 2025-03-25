@@ -37,6 +37,33 @@ inherited by templates called from the file.
     # [[ "true" ]]
     ```
 
+## Encoding
+
+Templates are always encoded in UTF-8 with no byte order mark and the result of
+executing a template is encoded in UTF-8 with no byte order mark.
+
+The result of executing an template can be transformed into another encoding
+with the template directive:
+
+    chezmoi:template:encoding=$ENCODING
+
+where `$ENCODING` is one of:
+
+| Encoding        | Description                                  |
+| --------------- | -------------------------------------------- |
+| `utf-8`         | UTF-8 with no byte order mark                |
+| `utf-8-bom`     | UTF-8 with a byte order mark                 |
+| `utf-16-be`     | Big-endian UTF-16 with no byte order mark    |
+| `utf-16-be-bom` | Big-endian UTF-16 with a byte order mark     |
+| `utf-16-le`     | Little-endian UTF-16 with no byte order mark |
+| `utf-16-le-bom` | Little-endian UTF-16 with a byte order mark  |
+
+!!! example
+
+    ```
+    {{/* chezmoi:template:encoding=utf-16-le */}}
+    ```
+
 ## Format indent
 
 By default, chezmoi's `toJson`, `toToml`, and `toYaml` template functions use
